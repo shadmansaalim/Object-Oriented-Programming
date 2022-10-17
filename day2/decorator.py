@@ -21,7 +21,10 @@ def get_factorial(n):
 # timer(get_factorial)()
 
 # Working because of *args
-# get_factorial(5)
+get_factorial(5)
 
 # We can do this only because in the above inner function inside timmer function we wrote **kwargs as argument which basically means multiple keyword arguments
 get_factorial(n=5)
+
+
+# Because of adding @timer above get_factorial the timer function is called with the parameter get_factorial function
