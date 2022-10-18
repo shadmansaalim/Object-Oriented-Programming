@@ -7,7 +7,8 @@ class Shopping:
         self.items = []
         self.total = 0
 
-    def opening_hour(cls, day):
+    @classmethod
+    def opening_hour(cls):
         return cls.mall
 
     # This means this function doesn't depend on any property of this class
