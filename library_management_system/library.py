@@ -1,6 +1,3 @@
-from dbm.ndbm import library
-
-
 class User:
     def __init__(self, name, id, password):
         self.name = name
@@ -34,11 +31,14 @@ class Library:
     def return_book(self, book_name, user):
         for book in self.books_collection:
             if book == book_name:
-                self.books_collection[book] += 1
-                user.books_borrowed.remove(book_name)
-                user.books_returned.append(book_name)
-                print("Thank you for returning the book to library ")
-                return
+                if book in user.borrowed_books:
+                    self.books_collection[book] += 1
+                    user.books_borrowed.remove(book_name)
+                    user.books_returned.append(book_name)
+                    print("Thank you for returning the book to library ")
+                    return
+                else:
+                    print("You never borrowed this book, please check.")
 
         print("This book is not from our library, please check.")
         return
@@ -88,7 +88,7 @@ while True:
             password = input("Enter your password : ")
             user = User(name, id, password)
             current_user = user
-            # users_list.append(current_user)
+            users_list.append(current_user)
     else:
         print("OPTIONS")
         print("_________")
@@ -121,4 +121,6 @@ while True:
             quantity = int(
                 input(f"Number of {book_name} books you want to donate : "))
             my_library.donate_book(book_name, quantity)
+        elif opt == 7:
+            current_user = None
         print("\n")
