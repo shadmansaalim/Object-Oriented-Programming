@@ -1,3 +1,6 @@
+from dbm.ndbm import library
+
+
 class User:
     def __init__(self, name, id, password):
         self.name = name
@@ -62,3 +65,7 @@ while True:
         print("OPTIONS")
         print("_________")
         print("1. Borrow a book")
+        my_library.borrow_book("English", current_user)
+        print(my_library.books_collection)
+        print(current_user.books_borrowed)
+        break
