@@ -43,6 +43,14 @@ class Library:
         print("This book is not from our library, please check.")
         return
 
+    def get_available_books(self):
+        available_books = []
+        for book in self.books_collection:
+            if (self.books_collection[book] > 0):
+                available_books.append(book)
+
+        return available_books
+
 
 my_library = Library({"English": 2, "History": 5, "Math": 3})
 
@@ -78,6 +86,9 @@ while True:
         print("_________")
         print("1. Borrow a book")
         print("2. Return a book")
+        print("3. Show the books that I am borrowing from library now")
+        print("4. Show the books that I have returned to library in the past")
+        print("5. Show the books available in library")
         opt = int(input("Select Option : "))
 
         if (opt == 1):
@@ -88,3 +99,10 @@ while True:
             book_name = input(
                 "Book Name that you want to return to library : ")
             my_library.return_book(book_name, current_user)
+        elif opt == 3:
+            print(current_user.books_borrowed)
+        elif opt == 4:
+            print(current_user.books_returned)
+        elif opt == 5:
+            available_books = my_library.get_available_books()
+            print(available_books)
