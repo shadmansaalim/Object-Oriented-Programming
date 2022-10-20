@@ -51,6 +51,14 @@ class Library:
 
         return available_books
 
+    def donate_book(self, book_name, quantity):
+        print("Thanks for donating, we added the book in our library")
+        for book in self.books_collection:
+            if book == book_name:
+                self.books_collection[book] += quantity
+                return
+        self.books_collection[book_name] = quantity
+
 
 my_library = Library({"English": 2, "History": 5, "Math": 3})
 
@@ -89,6 +97,8 @@ while True:
         print("3. Show the books that I am borrowing from library now")
         print("4. Show the books that I have returned to library in the past")
         print("5. Show the books available in library")
+        print("6. Donate a book in library")
+        print("7. Logout")
         opt = int(input("Select Option : "))
 
         if (opt == 1):
@@ -106,3 +116,9 @@ while True:
         elif opt == 5:
             available_books = my_library.get_available_books()
             print(available_books)
+        elif opt == 6:
+            book_name = input("Name of the book you want to donate : ")
+            quantity = int(
+                input(f"Number of {book_name} books you want to donate : "))
+            my_library.donate_book(book_name, quantity)
+        print("\n")
