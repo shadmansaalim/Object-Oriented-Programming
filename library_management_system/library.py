@@ -25,10 +25,22 @@ class Library:
                     return
                 self.books_collection[book] -= 1
                 user.books_borrowed.append(book_name)
-                print("Take your book")
+                print("Book borrowed successfully")
                 return
 
         print(f"We don't have the book {book_name} in our library.")
+        return
+
+    def return_book(self, book_name, user):
+        for book in self.books_collection:
+            if book == book_name:
+                self.books_collection[book] += 1
+                user.books_borrowed.remove(book_name)
+                user.books_returned.append(book_name)
+                print("Thank you for returning the book to library ")
+                return
+
+        print("This book is not from our library, please check.")
         return
 
 
@@ -65,7 +77,14 @@ while True:
         print("OPTIONS")
         print("_________")
         print("1. Borrow a book")
-        my_library.borrow_book("English", current_user)
-        print(my_library.books_collection)
-        print(current_user.books_borrowed)
-        break
+        print("2. Return a book")
+        opt = int(input("Select Option : "))
+
+        if (opt == 1):
+            book_name = input(
+                "Book Name that you want to borrow from library : ")
+            my_library.borrow_book(book_name, current_user)
+        elif (opt == 2):
+            book_name = input(
+                "Book Name that you want to return to library : ")
+            my_library.return_book(book_name, current_user)
