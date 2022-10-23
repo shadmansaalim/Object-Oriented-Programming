@@ -1,0 +1,60 @@
+# Laptop, Phone, Watch, Tablet
+
+class Laptop:
+    def __init__(self, brand, price, color, storage) -> None:
+        self.brand = brand
+        self.price = price
+        self.color = color
+        self.storage = storage
+
+    def run(self):
+        print("Running the Laptop")
+
+    def purchase(self, amount):
+        if amount < self.price:
+            return f"Please add ${self.price - amount} more to purchase {self.brand} Laptop"
+        else:
+            print("{self.brand} Laptop purchased successfully")
+            return amount - self.price
+
+
+class Phone:
+    def __init__(self, brand, price, color, camera, sim_count) -> None:
+        self.brand = brand
+        self.price = price
+        self.color = color
+        self.camera = camera
+        self.sim_count = sim_count
+
+    def is_dual_sim(self):
+        return self.sim_count > 1
+
+
+class Watch:
+    def __init__(self, brand, price, color, watch_type) -> None:
+        self.brand = brand
+        self.price = price
+        self.color = color
+        self.watch_type = watch_type
+
+    def is_digital(self):
+        return self.watch_type == "digital"
+
+
+class Manager:
+    def __init__(self, name, salary, experience, designation) -> None:
+        pass
+
+    def calc_total_sales(self):
+        pass
+
+    def handle_customer_complaints(self):
+        pass
+
+
+class SalesPerson:
+    def __init__(self, name, salary, experience, designation, commission) -> None:
+        pass
+
+    def handle_customer(self):
+        pass
