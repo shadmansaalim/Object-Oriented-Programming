@@ -10,3 +10,4 @@ class DerivedClass(BaseClass):
 # 1. Single Inheritance
 # 2. Multi Level Inheritance
 # 3. Multiple Inheritance
+# 4. Hierarchical Inheritance
