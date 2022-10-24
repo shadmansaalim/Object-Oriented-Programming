@@ -7,6 +7,8 @@ print("Hello" + "World")
 print([1, 2] + [3, 4])
 
 
+# Overriding make_sound method below
+
 class Animal:
     def __init__(self, name) -> None:
         self.name = name
