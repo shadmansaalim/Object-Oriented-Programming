@@ -7,7 +7,8 @@ class AbstractAnimalClass(ABC):
     def eat(self):
         pass
 
-    @abstra
+    @property
+    @abstractmethod
     def name(self):
         pass
 
@@ -17,8 +18,20 @@ class AbstractAnimalClass(ABC):
 
 
 class Monkey(AbstractAnimalClass):
+    def __init__(self) -> None:
+        super().__init__()
+        self.__name = "B Monkey"
+
     def sing(self):
         print("Monkey singing")
+
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, value):
+        self.__name = value
 
     def eat(self):
         print("Eating Banana")
@@ -31,3 +44,8 @@ class Monkey(AbstractAnimalClass):
 m = Monkey()
 print(m)
 m.move()
+
+
+print(m.name)
+m.name = "ABC Monkey"
+print(m.name)
