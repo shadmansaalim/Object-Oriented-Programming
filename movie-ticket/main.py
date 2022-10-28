@@ -47,19 +47,17 @@ class Hall(Star_Cinema):
         # PRIVATE
         self.__seats = {}
         self.__show_list = []
-
-        # PUBLIC
-        self.rows = rows
-        self.cols = cols
-        self.hall_no = hall_no
+        self.__rows = rows
+        self.__cols = cols
+        self.__hall_no = hall_no
         self.entry_hall(self)
 
     def entry_show(self, id, movie_name, time):
         self.__show_list.append((id, movie_name, time))
         seats = []
-        for i in range(0, self.rows):
+        for i in range(0, self.__rows):
             s_col = []
-            for j in range(0, self.cols):
+            for j in range(0, self.__cols):
                 s_col.append(False)
             seats.append(s_col)
         self.__seats[id] = seats
@@ -82,8 +80,8 @@ class Hall(Star_Cinema):
             return
 
         for seat in customer_seat_list:
-            max_rows = characters[self.rows]
-            if (seat[0] >= 'A' and seat[0] <= max_rows and int(seat[1]) < self.cols and len(seat) == 2):
+            max_rows = characters[self.__rows]
+            if (seat[0] >= 'A' and seat[0] <= max_rows and int(seat[1]) < self.__cols and len(seat) == 2):
                 continue
             else:
                 print(
@@ -124,7 +122,7 @@ class Hall(Star_Cinema):
                 print(f"{characters[row]}{col}", end=" ")
             else:
                 pass
-        print(f"\nHALL: {self.hall_no}")
+        print(f"\nHALL: {self.__hall_no}")
         print("\n-------------------------------------------------------------------------")
 
     def view_show_list(self):
@@ -167,8 +165,8 @@ class Hall(Star_Cinema):
 
         print("-------------------------------------------------------------------------\n")
         seats = self.__seats[id]
-        for i in range(0, self.rows):
-            for j in range(0, self.cols):
+        for i in range(0, self.__rows):
+            for j in range(0, self.__cols):
                 if (seats[i][j] == False):
                     char_map = characters[i]
                     print(f"{char_map}{j}\t", end="")
