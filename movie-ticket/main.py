@@ -44,8 +44,11 @@ class Star_Cinema:
 class Hall(Star_Cinema):
     def __init__(self, rows, cols, hall_no) -> None:
         super().__init__()
+        # PRIVATE
         self.__seats = {}
         self.__show_list = []
+
+        # PUBLIC
         self.rows = rows
         self.cols = cols
         self.hall_no = hall_no
@@ -79,7 +82,8 @@ class Hall(Star_Cinema):
             return
 
         for seat in customer_seat_list:
-            if (seat[0] >= 'A' and seat[0] <= 'Z' and int(seat[1]) < self.cols and len(seat) == 2):
+            max_rows = characters[self.rows]
+            if (seat[0] >= 'A' and seat[0] <= max_rows and int(seat[1]) < self.cols and len(seat) == 2):
                 continue
             else:
                 print(
