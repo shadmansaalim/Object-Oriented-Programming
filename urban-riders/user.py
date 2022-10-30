@@ -25,10 +25,12 @@ class User:
             hashed_pwd = hashlib.md5(password.encode()).hexdigest()
             if (hashed_pwd == stored_pass):
                 print(f"Successfully Logged In {email}")
+                return True
             else:
                 print("Invalid Password")
         else:
             print(f"No user exists with email {email}")
+        return False
 
 
 saalim = User("Saalim Shadman", "abc123@gmail.com", "123456@")
