@@ -9,8 +9,18 @@ class RideManager:
     def get_available_vehicles(self, vehicle_type):
         return self.__available_vehicles[vehicle_type]
 
-    def find_vehicle(self):
-        pass
+    def find_vehicle(self, passenger, vehicle_type, destination):
+        available_vehicles = len(self.__available_vehicles[vehicle_type])
+        if (available_vehicles == 0):
+            print(f"Sorry no {vehicle_type}s are available right now")
+            return False
+
+        for vehicle in self.__available_vehicles[vehicle_type]:
+            passenger_location = passenger.get_location()
+            vehicle_location = vehicle.driver.location
+            if abs(passenger_location - vehicle_location) < 30:
+                print(f"Found a {vehicle_type} match for you")
+                return True
 
 
 uber = RideManager()

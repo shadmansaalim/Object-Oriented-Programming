@@ -91,11 +91,11 @@ class Driver(User):
         if (self.verified):
             new_vehicle = None
             if vehicle_type == 'car':
-                new_vehicle = Car(vehicle_id, vehicle_type, rate, self.email)
+                new_vehicle = Car(vehicle_id, vehicle_type, rate, self)
             elif vehicle_type == 'bike':
-                new_vehicle = Bike(vehicle_id, vehicle_type, rate, self.email)
+                new_vehicle = Bike(vehicle_id, vehicle_type, rate, self)
             else:
-                new_vehicle = Tram(vehicle_id, vehicle_type, rate, self.email)
+                new_vehicle = Tram(vehicle_id, vehicle_type, rate, self)
             uber.add_vehicle(vehicle_type, new_vehicle)
         else:
             print("You cannot register a vehicle, please verify yourself first")
@@ -109,37 +109,39 @@ class Driver(User):
 
 
 passenger1 = Passenger("Passenger1", "passenger1@gmail.com",
-                       "abc1", randint(0, 100), 5000)
+                       "abc1", randint(0, 40), 5000)
 passenger2 = Passenger("Passenger2", "passenger2@gmail.com",
-                       "abc2", randint(0, 100), 3000)
+                       "abc2", randint(0, 40), 3000)
 
 passenger3 = Passenger("Passenger23", "passenger3@gmail.com",
-                       "abc3", randint(0, 100), 6000)
+                       "abc3", randint(0, 40), 6000)
 
 
 driver1 = Driver("Driver1", "driver1@gmail.com",
-                 "drive1", randint(0, 100), 4345)
+                 "drive1", randint(0, 40), 4345)
 driver1.driving_test()
 driver1.register_vehicle('car', 3213, 10)
 
 
 driver2 = Driver("Driver2", "driver2@gmail.com",
-                 "drive2", randint(0, 100), 5465)
+                 "drive2", randint(0, 40), 5465)
 driver2.driving_test()
 driver2.register_vehicle('car', 345213, 10)
 
 
 driver3 = Driver("Driver3", "driver3@gmail.com",
-                 "drive3", randint(0, 100), 932932)
+                 "drive3", randint(0, 40), 932932)
 driver3.driving_test()
 driver3.register_vehicle('bike', 9313, 10)
 
 
 driver4 = Driver("Driver4", "driver4@gmail.com",
-                 "drive4", randint(0, 100), 9984)
+                 "drive4", randint(0, 40), 9984)
 driver4.driving_test()
 driver4.register_vehicle('tram', 34213, 10)
 
-print(uber.get_available_vehicles('car'))
-print(uber.get_available_vehicles('bike'))
-print(uber.get_available_vehicles('tram'))
+# print(uber.get_available_vehicles('car'))
+# print(uber.get_available_vehicles('bike'))
+# print(uber.get_available_vehicles('tram'))
+
+uber.find_vehicle(passenger1, 'car', 90)
