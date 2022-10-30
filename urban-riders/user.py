@@ -33,6 +33,22 @@ class User:
         return False
 
 
+# A passenger is a user so inheritance concept of OOPS
+class Passenger(User):
+    def __init__(self, name, email, password, location, balance) -> None:
+        super().__init__(name, email, password)
+        self.__location = location
+        self.__balance = balance
+
+    # Setter
+    def set_location(self, location):
+        self.__location = location
+
+    # Getter
+    def get_location(self):
+        return self.__location
+
+
 saalim = User("Saalim Shadman", "abc123@gmail.com", "123456@")
 
 User.login("abc123@gmail.com", "123456@")
