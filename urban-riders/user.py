@@ -1,4 +1,7 @@
 import hashlib
+from vic_roads import VicRoads
+
+transport_authority = VicRoads()
 
 
 class User:
@@ -62,18 +65,32 @@ class Driver(User):
     def __init__(self, name, email, password, location, license) -> None:
         super().__init__(name, email, password)
         # Private attributes
-        self.__location = location
-        self.__license = license
+        self.location = location
+        self.license = license
+        self.verified = transport_authority.validate_license(email, license)
         self.__balance = 0
+
+    def driving_test(self):
+        result = transport_authority.driving_test(self.email)
+        if result != False:
+            self.license = result
+            self.verified = True
 
     def start_trip(self, destination, fare):
         self.__balance += fare
-        self.__location = destination
+        self.location = destination
 
     def check_balance(self):
         return self.__balance
 
 
 saalim = User("Saalim Shadman", "abc123@gmail.com", "123456@")
-
 User.login("abc123@gmail.com", "123456@")
+
+jawad = Driver("Jawad Ahmed", "jawad123@gmail.com",
+               "987654321", "339 Swanston Street", 9322)
+
+print(transport_authority.validate_license(jawad.email, jawad.license))
+jawad.driving_test()
+print(transport_authority.validate_license(jawad.email, jawad.license))
+print(jawad.license)

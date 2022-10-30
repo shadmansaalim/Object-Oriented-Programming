@@ -21,9 +21,3 @@ class VicRoads:
         if email in self.__license:
             return self.__license[email] == license
         return False
-
-
-vic = VicRoads()
-
-license = vic.driving_test("abc123@gmail.com")
-print(vic.validate_license("abc123@gmail.com", license))
