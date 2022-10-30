@@ -57,6 +57,23 @@ class Passenger(User):
         pass
 
 
+# A driver is a user so inheritance concept of OOPS
+class Driver(User):
+    def __init__(self, name, email, password, location, license) -> None:
+        super().__init__(name, email, password)
+        # Private attributes
+        self.__location = location
+        self.__license = license
+        self.__balance = 0
+
+    def start_trip(self, destination, fare):
+        self.__balance += fare
+        self.__location = destination
+
+    def check_balance(self):
+        return self.__balance
+
+
 saalim = User("Saalim Shadman", "abc123@gmail.com", "123456@")
 
 User.login("abc123@gmail.com", "123456@")
