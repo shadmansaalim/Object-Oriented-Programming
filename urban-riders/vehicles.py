@@ -2,11 +2,12 @@ from abc import ABC, abstractmethod
 
 
 # Abstract class
-class Vehicles(ABC):
+class Vehicle(ABC):
     speeds = {"car": 30, "bike": 50, "tram": 40}
 
-    def __init__(self, vehicle_type, rate, driver) -> None:
+    def __init__(self, vehicle_id, vehicle_type, rate, driver) -> None:
         super().__init__()
+        self.vehicle_id = vehicle_id
         self.vehicle_type = vehicle_type
         self.rate = rate
         self.driver = driver
@@ -19,3 +20,36 @@ class Vehicles(ABC):
     @abstractmethod
     def trip_completed(self):
         pass
+
+
+class Car(Vehicle):
+    def __init__(self, vehicle_id, vehicle_type, rate, driver) -> None:
+        super().__init__(vehicle_id, vehicle_type, rate, driver)
+
+    def start_driving(self):
+        print(f"{self.vehicle_type} {self.vehicle_id} STARTED")
+
+    def trip_completed(self):
+        print(f"{self.vehicle_type} {self.vehicle_id} COMPLETED")
+
+
+class Bike(Vehicle):
+    def __init__(self, vehicle_id, vehicle_type, rate, driver) -> None:
+        super().__init__(vehicle_id, vehicle_type, rate, driver)
+
+    def start_driving(self):
+        print(f"{self.vehicle_type} {self.vehicle_id} STARTED")
+
+    def trip_completed(self):
+        print(f"{self.vehicle_type} {self.vehicle_id} COMPLETED")
+
+
+class Tram(Vehicle):
+    def __init__(self, vehicle_id, vehicle_type, rate, driver) -> None:
+        super().__init__(vehicle_id, vehicle_type, rate, driver)
+
+    def start_driving(self):
+        print(f"{self.vehicle_type} {self.vehicle_id} STARTED")
+
+    def trip_completed(self):
+        print(f"{self.vehicle_type} {self.vehicle_id} COMPLETED")
