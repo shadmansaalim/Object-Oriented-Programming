@@ -37,6 +37,7 @@ class User:
 class Passenger(User):
     def __init__(self, name, email, password, location, balance) -> None:
         super().__init__(name, email, password)
+        # Private attributes
         self.__location = location
         self.__balance = balance
 
@@ -47,6 +48,13 @@ class Passenger(User):
     # Getter
     def get_location(self):
         return self.__location
+
+    def request_trip(self, destination):
+        pass
+
+    def start_trip(self, fare):
+        self.__balance -= fare
+        pass
 
 
 saalim = User("Saalim Shadman", "abc123@gmail.com", "123456@")
