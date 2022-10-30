@@ -1,9 +1,10 @@
 import hashlib
+from random import random, randint
 from re import I
 from vic_roads import VicRoads
 from vehicles import Car, Bike, Tram
 from ride_manager import uber
-
+from os.path import exists
 
 transport_authority = VicRoads()
 
@@ -13,8 +14,14 @@ class User:
         self.name = name
         self.email = email
         pwd_encrypted = hashlib.md5(password.encode()).hexdigest()
-        with open('users.text', 'w') as file:
-            file.write(f"{email} {pwd_encrypted}")
+        file_exists = exists("users.text")
+        with open('users.text', 'r+') as file:
+            if (file_exists):
+                lines = file.readlines()
+                for line in lines:
+                    if email in line:
+                        return False
+            file.write(f"{email} {pwd_encrypted}\n")
         file.close()
         print(f"{email} User Created Successfully")
 
@@ -101,13 +108,10 @@ class Driver(User):
         return self.__balance
 
 
-saalim = User("Saalim Shadman", "abc123@gmail.com", "123456@")
-User.login("abc123@gmail.com", "123456@")
+passenger1 = Passenger("Passenger1", "passenger1@gmail.com",
+                       "abc1", randint(0, 100), 5000)
+passenger2 = Passenger("Passenger2", "passenger2@gmail.com",
+                       "abc2", randint(0, 100), 3000)
 
-jawad = Driver("Jawad Ahmed", "jawad123@gmail.com",
-               "987654321", "339 Swanston Street", 9322)
-
-print(transport_authority.validate_license(jawad.email, jawad.license))
-jawad.driving_test()
-print(transport_authority.validate_license(jawad.email, jawad.license))
-print(jawad.license)
+passenger3 = Passenger("Passenger23", "passenger3@gmail.com",
+                       "abc3", randint(0, 100), 6000)
