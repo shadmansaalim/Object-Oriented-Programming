@@ -1,5 +1,9 @@
 import hashlib
+from re import I
 from vic_roads import VicRoads
+from vehicles import Car, Bike, Tram
+from ride_manager import uber
+
 
 transport_authority = VicRoads()
 
@@ -75,6 +79,19 @@ class Driver(User):
         if result != False:
             self.license = result
             self.verified = True
+
+    def register_vehicle(self, vehicle_type, vehicle_id, rate):
+        if (self.verified):
+            new_vehicle = None
+            if vehicle_type == 'car':
+                new_vehicle = Car(vehicle_type, vehicle_id, rate, self.email)
+            elif vehicle_type == 'bike':
+                new_vehicle = Bike(vehicle_type, vehicle_id, rate, self.email)
+            else:
+                new_vehicle = Tram(vehicle_type, vehicle_id, rate, self.email)
+            uber.add_vehicle(new_vehicle)
+        else:
+            print("You cannot register a vehicle, please verify yourself first")
 
     def start_trip(self, destination, fare):
         self.__balance += fare
