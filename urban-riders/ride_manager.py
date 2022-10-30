@@ -6,7 +6,10 @@ class RideManager:
     def add_vehicle(self, vehicle_type, vehicle):
         self.__available_vehicles[vehicle_type].append(vehicle)
 
-    def match_vehicle(self):
+    def get_available_vehicles(self, vehicle_type):
+        return self.__available_vehicles[vehicle_type]
+
+    def find_vehicle(self):
         pass
 
 
