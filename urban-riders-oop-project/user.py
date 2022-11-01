@@ -1,10 +1,8 @@
 import hashlib
 from random import random, randint
-from re import I
 from vic_roads import VicRoads
 from vehicles import Car, Bike, Tram
 from ride_manager import uber
-from os.path import exists
 
 transport_authority = VicRoads()
 
