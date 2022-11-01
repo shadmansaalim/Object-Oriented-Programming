@@ -75,6 +75,9 @@ class Passenger(User):
     def request_trip(self, destination):
         pass
 
+    def get_trip_history(self):
+        return self.__trip_history
+
     def start_trip(self, fare, trip_info):
         self.__balance -= fare
         self.__trip_history.append(trip_info)
@@ -113,6 +116,9 @@ class Driver(User):
             # print("You cannot register a vehicle, please verify yourself first")
             pass
 
+    def get_trip_history(self):
+        return self.__trip_history
+
     def start_trip(self, destination, fare, trip_info):
         self.__balance += fare
         self.location = destination
@@ -147,3 +153,6 @@ uber.find_vehicle(passenger1, 'car', randint(1, 200))
 uber.find_vehicle(passenger1, 'car', randint(1, 200))
 uber.find_vehicle(passenger1, 'car', randint(1, 200))
 uber.find_vehicle(passenger1, 'car', randint(1, 200))
+
+print(passenger1.get_trip_history())
+print(uber.total_income())
