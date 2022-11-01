@@ -19,8 +19,17 @@ class RideManager:
             passenger_location = passenger.get_location()
             vehicle_location = vehicle.driver.location
             if abs(passenger_location - vehicle_location) < 30:
-                print(f"Found a {vehicle_type} match for you")
-                return True
+                if vehicle.available == True:
+                    # Making the vehicle unavailable
+                    vehicle.available = False
+                    # Removing the vehicle from available list
+                    print(f'Available {vehicle_type}s',
+                          len(self.__available_vehicles[vehicle_type]))
+                    self.__available_vehicles[vehicle_type].remove(vehicle)
+                    print(f'Available {vehicle_type}s',
+                          len(self.__available_vehicles[vehicle_type]))
+                    print(f"Found a {vehicle_type} match for you")
+                    return True
 
 
 uber = RideManager()

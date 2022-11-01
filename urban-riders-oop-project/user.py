@@ -30,7 +30,7 @@ class User:
             with open('users.text', 'a') as file:
                 file.write(f"{email} {pwd_encrypted}\n")
             file.close()
-            print(f"{email} User Created Successfully")
+            # print(f"{email} User Created Successfully")
 
     @staticmethod
     def login(email, password):
@@ -90,7 +90,9 @@ class Driver(User):
 
     def driving_test(self):
         result = transport_authority.driving_test(self.email)
-        if result != False:
+        if result == False:
+            self.license = None
+        else:
             self.license = result
             self.verified = True
 
@@ -124,28 +126,12 @@ passenger3 = Passenger("Passenger23", "passenger3@gmail.com",
                        "abc3", randint(0, 40), 6000)
 
 
-driver1 = Driver("Driver1", "driver1@gmail.com",
-                 "drive1", randint(0, 40), 4345)
-driver1.driving_test()
-driver1.register_vehicle('car', 3213, 10)
+for i in range(1, 100):
+    driver1 = Driver(f"Driver{i}", f"driver{i}@gmail.com",
+                     f"drive{i}", randint(0, 100), randint(1000, 9999))
+    driver1.driving_test()
+    driver1.register_vehicle('car', randint(10000, 99999), 10)
 
-
-driver2 = Driver("Driver2", "driver2@gmail.com",
-                 "drive2", randint(0, 40), 5465)
-driver2.driving_test()
-driver2.register_vehicle('car', 345213, 10)
-
-
-driver3 = Driver("Driver3", "driver3@gmail.com",
-                 "drive3", randint(0, 40), 932932)
-driver3.driving_test()
-driver3.register_vehicle('bike', 9313, 10)
-
-
-driver4 = Driver("Driver4", "driver4@gmail.com",
-                 "drive4", randint(0, 40), 9984)
-driver4.driving_test()
-driver4.register_vehicle('tram', 34213, 10)
 
 # print(uber.get_available_vehicles('car'))
 # print(uber.get_available_vehicles('bike'))
