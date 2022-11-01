@@ -59,6 +59,7 @@ class Passenger(User):
         # Private attributes
         self.__location = location
         self.__balance = balance
+        self.__trip_history = []
 
     # Setter
     def set_location(self, location):
@@ -74,9 +75,9 @@ class Passenger(User):
     def request_trip(self, destination):
         pass
 
-    def start_trip(self, fare):
+    def start_trip(self, fare, trip_info):
         self.__balance -= fare
-        pass
+        self.__trip_history.append(trip_info)
 
 
 # A driver is a user so inheritance concept of OOPS
@@ -88,6 +89,7 @@ class Driver(User):
         self.license = license
         self.verified = transport_authority.validate_license(email, license)
         self.__balance = 0
+        self.__trip_history = []
 
     def driving_test(self):
         result = transport_authority.driving_test(self.email)
@@ -111,9 +113,10 @@ class Driver(User):
             # print("You cannot register a vehicle, please verify yourself first")
             pass
 
-    def start_trip(self, destination, fare):
+    def start_trip(self, destination, fare, trip_info):
         self.__balance += fare
         self.location = destination
+        self.__trip_history.append(trip_info)
 
     def get_balance(self):
         return self.__balance
