@@ -9,21 +9,28 @@ from os.path import exists
 transport_authority = VicRoads()
 
 
+class UserAlreadyExists(Exception):
+    def __init__(self, email, *args: object) -> None:
+        super().__init__(*args)
+        print(f'An user with {email} already exists cannot create.')
+
+
 class User:
     def __init__(self, name, email, password) -> None:
         self.name = name
         self.email = email
         pwd_encrypted = hashlib.md5(password.encode()).hexdigest()
-        file_exists = exists("users.text")
-        with open('users.text', 'r+') as file:
-            if (file_exists):
-                lines = file.readlines()
-                for line in lines:
-                    if email in line:
-                        return False
-            file.write(f"{email} {pwd_encrypted}\n")
+        user_exists = False
+        with open('users.text', 'r') as file:
+            if email in file.read():
+                user_exists = True
+                # raise UserAlreadyExists(email)
         file.close()
-        print(f"{email} User Created Successfully")
+        if (user_exists == False):
+            with open('users.text', 'a') as file:
+                file.write(f"{email} {pwd_encrypted}\n")
+            file.close()
+            print(f"{email} User Created Successfully")
 
     @staticmethod
     def login(email, password):
