@@ -121,9 +121,10 @@ class Driver(User):
     def get_trip_history(self):
         return self.__trip_history
 
-    def start_trip(self, destination, fare, trip_info):
+    def start_trip(self, start, destination, fare, trip_info):
         self.__balance += fare
         self.location = destination
+        self.vehicle.start_driving(start, destination)
         self.__trip_history.append(trip_info)
 
     def get_balance(self):

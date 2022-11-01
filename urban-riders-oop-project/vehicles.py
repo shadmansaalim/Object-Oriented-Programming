@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from time import sleep
 
 
 # Abstract class
@@ -27,9 +28,17 @@ class Car(Vehicle):
     def __init__(self, vehicle_id, vehicle_type, rate, driver) -> None:
         super().__init__(vehicle_id, vehicle_type, rate, driver)
 
-    def start_driving(self):
+    def start_driving(self, start, destination):
         self.available = False
         print(f"{self.vehicle_type} {self.vehicle_id} STARTED")
+
+        # Simulating the driving of the trip
+        distance = abs(start-destination)
+        for i in range(0, distance):
+            sleep(1)
+            print(
+                f'Driving: {self.vehicle_id} Current Position {i} of {distance}')
+        self.trip_completed()
 
     def trip_completed(self):
         self.available = True
@@ -40,9 +49,17 @@ class Bike(Vehicle):
     def __init__(self, vehicle_id, vehicle_type, rate, driver) -> None:
         super().__init__(vehicle_id, vehicle_type, rate, driver)
 
-    def start_driving(self):
+    def start_driving(self, start, destination):
         self.available = False
         print(f"{self.vehicle_type} {self.vehicle_id} STARTED")
+
+        # Simulating the driving of the trip
+        distance = abs(start-destination)
+        for i in range(0, distance):
+            sleep(0.5)
+            print(
+                f'Driving: {self.vehicle_id} Current Position {i} of {distance}')
+        self.trip_completed()
 
     def trip_completed(self):
         self.available = True
@@ -53,9 +70,17 @@ class Tram(Vehicle):
     def __init__(self, vehicle_id, vehicle_type, rate, driver) -> None:
         super().__init__(vehicle_id, vehicle_type, rate, driver)
 
-    def start_driving(self):
+    def start_driving(self, start, destination):
         self.available = False
         print(f"{self.vehicle_type} {self.vehicle_id} STARTED")
+
+        # Simulating the driving of the trip
+        distance = abs(start-destination)
+        for i in range(0, distance):
+            sleep(1)
+            print(
+                f'Driving: {self.vehicle_id} Current Position {i} of {distance}')
+        self.trip_completed()
 
     def trip_completed(self):
         self.available = True

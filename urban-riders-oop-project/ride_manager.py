@@ -54,7 +54,7 @@ class RideManager:
 
                 # Giving 80% of the fare to driver and 20% to uber
                 vehicle.driver.start_trip(
-                    passenger_location, fare*0.8, trip_info)
+                    passenger_location, destination, fare*0.8, trip_info)
                 self.__income += fare*0.2
 
                 print(
