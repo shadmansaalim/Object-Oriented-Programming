@@ -37,7 +37,7 @@ class Car(Vehicle):
         for i in range(0, distance):
             sleep(1)
             print(
-                f'Driving: {self.vehicle_id} Current Position {i} of {distance}')
+                f'Driving: {self.vehicle_type} {self.vehicle_id} Current Position {i} of {distance}')
         self.trip_completed()
 
     def trip_completed(self):
@@ -58,7 +58,7 @@ class Bike(Vehicle):
         for i in range(0, distance):
             sleep(1)
             print(
-                f'Driving: {self.vehicle_id} Current Position {i} of {distance}')
+                f'Driving: {self.vehicle_type} {self.vehicle_id} Current Position {i} of {distance}')
         self.trip_completed()
 
     def trip_completed(self):
@@ -79,7 +79,7 @@ class Tram(Vehicle):
         for i in range(0, distance):
             sleep(1)
             print(
-                f'Driving: {self.vehicle_id} Current Position {i} of {distance}')
+                f'Driving: {self.vehicle_type} {self.vehicle_id} Current Position {i} of {distance}')
         self.trip_completed()
 
     def trip_completed(self):
