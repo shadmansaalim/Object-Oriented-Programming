@@ -87,6 +87,8 @@ class Passenger(User):
 class Driver(User):
     def __init__(self, name, email, password, location, license) -> None:
         super().__init__(name, email, password)
+        self.vehicle = None
+
         # Private attributes
         self.location = location
         self.license = license
