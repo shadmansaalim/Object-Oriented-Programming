@@ -1,5 +1,4 @@
 import hashlib
-from random import randint, choice
 import threading
 from vehicles import Car, Bike, Tram
 from vic_roads import VicRoads
@@ -73,9 +72,6 @@ class Passenger(User):
 
     def get_balance(self):
         return self.__balance
-
-    def request_trip(self, destination):
-        pass
 
     def get_trip_history(self):
         return self.__trip_history
