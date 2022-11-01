@@ -1,5 +1,5 @@
 import hashlib
-from random import random, randint
+from random import random, randint, choice
 import threading
 from vic_roads import VicRoads
 from vehicles import Car, Bike, Tram
@@ -152,16 +152,17 @@ for i in range(1, 100):
     driver1 = Driver(f"Driver{i}", f"driver{i}@gmail.com",
                      f"drive{i}", randint(0, 100), randint(1000, 9999))
     driver1.driving_test()
-    driver1.register_vehicle('car', randint(10000, 99999), 10)
+    driver1.register_vehicle(
+        choice(['car', 'bike', 'tram']), randint(10000, 99999), 10)
 
 
 # print(uber.get_available_vehicles('car'))
 # print(uber.get_available_vehicles('bike'))
 # print(uber.get_available_vehicles('tram'))
 
-uber.find_vehicle(passenger1, 'car', randint(1, 200))
-uber.find_vehicle(passenger1, 'car', randint(1, 200))
-uber.find_vehicle(passenger1, 'car', randint(1, 200))
+uber.find_vehicle(passenger1, choice(['car', 'bike', 'tram']), randint(1, 200))
+uber.find_vehicle(passenger1, choice(['car', 'bike', 'tram']), randint(1, 200))
+uber.find_vehicle(passenger1, choice(['car', 'bike', 'tram']), randint(1, 200))
 
 
 print(passenger1.get_trip_history())
