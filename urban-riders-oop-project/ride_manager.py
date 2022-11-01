@@ -20,11 +20,17 @@ class RideManager:
             vehicle_location = vehicle.driver.location
             distance = abs(passenger_location - vehicle_location)
             if distance < 30 and vehicle.available == True:
+                fare = vehicle.rate * distance
+                if passenger.get_balance() < fare:
+                    print("Insufficient balance to start the trip")
+                    return False
                 # Making the vehicle unavailable
                 vehicle.available = False
                 # Removing the vehicle from available list
                 self.__available_vehicles[vehicle_type].remove(vehicle)
-                print(f"Found a {vehicle_type} match for you")
+                # Starting the trip
+                passenger.start_trip(fare)
+                print(f"Found a {vehicle_type} match for you for fare ${fare}")
                 return True
 
 

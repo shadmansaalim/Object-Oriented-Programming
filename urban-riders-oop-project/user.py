@@ -70,6 +70,9 @@ class Passenger(User):
     def get_location(self):
         return self.__location
 
+    def get_balance(self):
+        return self.__balance
+
     def request_trip(self, destination):
         pass
 
@@ -107,23 +110,24 @@ class Driver(User):
                 new_vehicle = Tram(vehicle_id, vehicle_type, rate, self)
             uber.add_vehicle(vehicle_type, new_vehicle)
         else:
-            print("You cannot register a vehicle, please verify yourself first")
+            # print("You cannot register a vehicle, please verify yourself first")
+            pass
 
     def start_trip(self, destination, fare):
         self.__balance += fare
         self.location = destination
 
-    def check_balance(self):
+    def get_balance(self):
         return self.__balance
 
 
 passenger1 = Passenger("Passenger1", "passenger1@gmail.com",
-                       "abc1", randint(0, 40), 5000)
+                       "abc1", randint(0, 40), randint(1, 1000))
 passenger2 = Passenger("Passenger2", "passenger2@gmail.com",
-                       "abc2", randint(0, 40), 3000)
+                       "abc2", randint(0, 40), randint(1, 1000))
 
 passenger3 = Passenger("Passenger23", "passenger3@gmail.com",
-                       "abc3", randint(0, 40), 6000)
+                       "abc3", randint(0, 40), randint(1, 1000))
 
 
 for i in range(1, 100):
@@ -137,4 +141,8 @@ for i in range(1, 100):
 # print(uber.get_available_vehicles('bike'))
 # print(uber.get_available_vehicles('tram'))
 
-uber.find_vehicle(passenger1, 'car', 90)
+uber.find_vehicle(passenger1, 'car', randint(1, 200))
+uber.find_vehicle(passenger1, 'car', randint(1, 200))
+uber.find_vehicle(passenger1, 'car', randint(1, 200))
+uber.find_vehicle(passenger1, 'car', randint(1, 200))
+uber.find_vehicle(passenger1, 'car', randint(1, 200))
