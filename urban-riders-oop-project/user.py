@@ -104,14 +104,14 @@ class Driver(User):
 
     def register_vehicle(self, vehicle_type, vehicle_id, rate):
         if (self.verified):
-            new_vehicle = None
+            self.vehicle = None
             if vehicle_type == 'car':
-                new_vehicle = Car(vehicle_id, vehicle_type, rate, self)
+                self.vehicle = Car(vehicle_id, vehicle_type, rate, self)
             elif vehicle_type == 'bike':
-                new_vehicle = Bike(vehicle_id, vehicle_type, rate, self)
+                self.vehicle = Bike(vehicle_id, vehicle_type, rate, self)
             else:
-                new_vehicle = Tram(vehicle_id, vehicle_type, rate, self)
-            uber.add_vehicle(vehicle_type, new_vehicle)
+                self.vehicle = Tram(vehicle_id, vehicle_type, rate, self)
+            uber.add_vehicle(vehicle_type, self.vehicle)
         else:
             # print("You cannot register a vehicle, please verify yourself first")
             pass
