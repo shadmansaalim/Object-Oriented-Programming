@@ -1,6 +1,7 @@
 class RideManager:
     def __init__(self) -> None:
         print("Ride Manager Activated")
+        self.__income = 0
         self.__available_vehicles = {"car": [], "bike": [], "tram": []}
 
     def add_vehicle(self, vehicle_type, vehicle):
@@ -28,8 +29,13 @@ class RideManager:
                 vehicle.available = False
                 # Removing the vehicle from available list
                 self.__available_vehicles[vehicle_type].remove(vehicle)
+
                 # Starting the trip
                 passenger.start_trip(fare)
+                # Giving 80% of the fare to driver and 20% to uber
+                vehicle.driver.start_trip(passenger_location, fare*0.8)
+                self.__income += fare*0.2
+
                 print(f"Found a {vehicle_type} match for you for fare ${fare}")
                 return True
 
