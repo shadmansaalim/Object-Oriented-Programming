@@ -58,7 +58,7 @@ class RideManager:
                 self.__income += fare*0.2
 
                 print(
-                    f"Found a {vehicle_type} match for you for ${fare}. You will be assisted by {vehicle.driver.name}")
+                    f"Found a {vehicle_type} match for {passenger.name} for ${fare}. You will be assisted by {vehicle.driver.name}")
                 return True
 
 

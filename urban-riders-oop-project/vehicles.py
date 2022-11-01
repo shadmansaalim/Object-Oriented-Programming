@@ -56,7 +56,7 @@ class Bike(Vehicle):
         # Simulating the driving of the trip
         distance = abs(start-destination)
         for i in range(0, distance):
-            sleep(0.5)
+            sleep(1)
             print(
                 f'Driving: {self.vehicle_id} Current Position {i} of {distance}')
         self.trip_completed()

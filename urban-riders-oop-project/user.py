@@ -1,5 +1,6 @@
 import hashlib
 from random import random, randint
+import threading
 from vic_roads import VicRoads
 from vehicles import Car, Bike, Tram
 from ride_manager import uber
@@ -79,6 +80,7 @@ class Passenger(User):
         return self.__trip_history
 
     def start_trip(self, fare, trip_info):
+        print(f'A trip started for {self.name}')
         self.__balance -= fare
         self.__trip_history.append(trip_info)
 
@@ -124,7 +126,13 @@ class Driver(User):
     def start_trip(self, start, destination, fare, trip_info):
         self.__balance += fare
         self.location = destination
-        self.vehicle.start_driving(start, destination)
+
+        # Creating and Starting thread
+        trip_thread = threading.Thread(
+            target=self.vehicle.start_driving, args=(start, destination))
+        trip_thread.start()
+
+        # self.vehicle.start_driving(start, destination)
         self.__trip_history.append(trip_info)
 
     def get_balance(self):
@@ -136,7 +144,7 @@ passenger1 = Passenger("Passenger1", "passenger1@gmail.com",
 passenger2 = Passenger("Passenger2", "passenger2@gmail.com",
                        "abc2", randint(0, 40), randint(1, 1000))
 
-passenger3 = Passenger("Passenger23", "passenger3@gmail.com",
+passenger3 = Passenger("Passenger3", "passenger3@gmail.com",
                        "abc3", randint(0, 40), randint(1, 1000))
 
 
@@ -154,8 +162,7 @@ for i in range(1, 100):
 uber.find_vehicle(passenger1, 'car', randint(1, 200))
 uber.find_vehicle(passenger1, 'car', randint(1, 200))
 uber.find_vehicle(passenger1, 'car', randint(1, 200))
-uber.find_vehicle(passenger1, 'car', randint(1, 200))
-uber.find_vehicle(passenger1, 'car', randint(1, 200))
+
 
 print(passenger1.get_trip_history())
 print(uber.total_income())
