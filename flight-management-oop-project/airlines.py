@@ -1,4 +1,5 @@
 import csv
+from aircraft import Aircraft
 
 
 class Airlines:
@@ -7,13 +8,26 @@ class Airlines:
         self.load_aircrafts_data('./data/aircraft.csv')
 
     def load_aircrafts_data(self, file_path):
+        aircrafts = {}
         with open(file_path, 'r') as file:
             lines = csv.reader(file)
             # Ignoring the header with next method
             header = next(lines)
+
+            # Creating aircrafts
             for line in lines:
-                print(line)
+                aircraft_code = line[0]
+                aircraft_make = line[3]
+                aircraft_category = line[1]
+                aircraft_range = line[4]
+
+                aircrafts[aircraft_code] = Aircraft(
+                    aircraft_make, aircraft_code, aircraft_category, aircraft_range)
+        self.aircrafts = aircrafts
         file.close()
+
+    def get_aircraft(self, code):
+        return self.aircrafts[code]
 
 
 Airlines()
