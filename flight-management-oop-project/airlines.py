@@ -13,6 +13,7 @@ class Airlines:
             header = next(lines)
             for line in lines:
                 print(line)
+        file.close()
 
 
 Airlines()
