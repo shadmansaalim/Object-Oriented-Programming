@@ -1,4 +1,5 @@
 import csv
+from math import radians, sin, cos, sqrt, atan2
 from airport import Airport
 
 
@@ -52,6 +53,18 @@ class Airports:
 
         self.airports = airports
         file.close()
+
+    # Calculating distance between two gps location
+    def get_distance_between_airports(self, lat1, long1, lat2, long2):
+        radius = 6371  # KM
+        lat_diff = radians(lat1 - lat2)
+        long_diff = radians(long1 - long2)
+        a = (sin(lat_diff / 2) * sin(lat_diff / 2) +
+             cos(radians(lat1)) * cos(radians(lat2)) *
+             sin(long_diff / 2) * sin(long_diff / 2))
+        c = 2 * atan2(sqrt(a), sqrt(1 - a))
+        distance = radius * c
+        return distance
 
 
 Airports()
