@@ -5,10 +5,10 @@ class Airport:
         self.name = name
         self.city = city
         self.country = country
-        self.lat = lat
-        self.long = long
+        self.lat = float(lat)
+        self.long = float(long)
         # Private
-        self.__rate = rate
+        self.__rate = float(rate)
 
     # Getter
     def get_rate(self):

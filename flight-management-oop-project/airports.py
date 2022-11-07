@@ -78,7 +78,7 @@ class Airports:
     def get_ticket_price(self, start, end):
         distance = self.get_distance_between_airports(start, end)
         departing_airport = self.airports[start]
-        fare = distance * departing_airport.rate
+        fare = distance * departing_airport.get_rate()
         return fare
 
 
