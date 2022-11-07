@@ -49,7 +49,7 @@ class Airports:
                     airports[airport_code] = Airport(
                         airport_code, airport_name, airport_city, airport_country, airport_lat, airport_long, airport_rate)
             except KeyError as e:
-                print(e)
+                print('Key Not Found', e)
 
         self.airports = airports
         file.close()
@@ -84,4 +84,4 @@ class Airports:
 
 airport_manager = Airports()
 fare = airport_manager.get_distance_between_airports('DAC', 'PRA')
-print(fare)
+print("Ticket Fare ", fare)
