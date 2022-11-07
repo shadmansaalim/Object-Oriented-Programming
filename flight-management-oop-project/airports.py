@@ -55,7 +55,7 @@ class Airports:
         file.close()
 
     # Calculating distance between two points
-    def get_distance_between_two_points(self, lat1, long1, lat2, long2):
+    def __get_distance_between_two_points(self, lat1, long1, lat2, long2):
         radius = 6371  # KM
         lat_diff = radians(lat1 - lat2)
         long_diff = radians(long1 - long2)
@@ -67,12 +67,21 @@ class Airports:
         return distance
 
     # Distance between two airports
-    def distance_between_airports(self, departing_airport_code, arriving_airport_code):
+    def get_distance_between_airports(self, departing_airport_code, arriving_airport_code):
         departing_airport = self.airports[departing_airport_code]
         arriving_airport = self.airports[arriving_airport_code]
-        distance = self.get_distance_between_two_points(
+        distance = self.__get_distance_between_two_points(
             departing_airport.lat, departing_airport.long, arriving_airport.lat, arriving_airport.long)
         return distance
 
+    # Fare Calculate
+    def get_ticket_price(self, start, end):
+        distance = self.get_distance_between_airports(start, end)
+        departing_airport = self.airports[start]
+        fare = distance * departing_airport.rate
+        return fare
 
-Airports()
+
+airport_manager = Airports()
+fare = airport_manager.get_distance_between_airports('DAC', 'PRA')
+print(fare)
