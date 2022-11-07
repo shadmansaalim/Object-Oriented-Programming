@@ -1,6 +1,7 @@
 class Airport:
-    def __init__(self, name, country, lat, long, rate) -> None:
+    def __init__(self, code, name, country, lat, long, rate) -> None:
         # Public Attributes
+        self.code = code
         self.name = name
         self.country = country
         self.lat = lat
@@ -11,6 +12,10 @@ class Airport:
     # Getter
     def get_rate(self):
         return self.__rate
+
+     # Setter
+    def set_rate(self, amount):
+        self.__rate = amount
 
     # Dunder
     def __repr__(self) -> str:
