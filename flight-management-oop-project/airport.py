@@ -1,8 +1,9 @@
 class Airport:
-    def __init__(self, code, name, country, lat, long, rate) -> None:
+    def __init__(self, code, name, city, country, lat, long, rate) -> None:
         # Public Attributes
         self.code = code
         self.name = name
+        self.city = city
         self.country = country
         self.lat = lat
         self.long = long
