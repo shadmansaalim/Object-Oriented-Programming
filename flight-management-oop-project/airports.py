@@ -54,8 +54,8 @@ class Airports:
         self.airports = airports
         file.close()
 
-    # Calculating distance between two gps location
-    def get_distance_between_airports(self, lat1, long1, lat2, long2):
+    # Calculating distance between two points
+    def get_distance_between_two_points(self, lat1, long1, lat2, long2):
         radius = 6371  # KM
         lat_diff = radians(lat1 - lat2)
         long_diff = radians(long1 - long2)
@@ -64,6 +64,14 @@ class Airports:
              sin(long_diff / 2) * sin(long_diff / 2))
         c = 2 * atan2(sqrt(a), sqrt(1 - a))
         distance = radius * c
+        return distance
+
+    # Distance between two airports
+    def distance_between_airports(self, departing_airport_code, arriving_airport_code):
+        departing_airport = self.airports[departing_airport_code]
+        arriving_airport = self.airports[arriving_airport_code]
+        distance = self.get_distance_between_two_points(
+            departing_airport.lat, departing_airport.long, arriving_airport.lat, arriving_airport.long)
         return distance
 
 
