@@ -31,7 +31,7 @@ class Airlines:
 
     def get_aircraft_by_distance(self, distance):
         aircraft = None
-        for aircraft in self.aircrafts.items():
+        for aircraft in self.aircrafts.values():
             if aircraft.flight_range < distance:
                 return aircraft
 
