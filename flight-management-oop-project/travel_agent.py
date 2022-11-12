@@ -59,9 +59,21 @@ class TravelAgent:
     def set_trip_multi_city_flexible_route(self, trip_cities, departure_date):
         start_city = trip_cities[0]
         flexible_cities = trip_cities[1:]
+        best_price = float('inf')
+        selected_trips = None
+
         for sequence in permutations(flexible_cities):
-            for i in range(0, len(flexible_cities)):
-                print(sequence[i])
+            fixed_route = [start_city] + list(sequence)
+            fixed_route_trips = self.set_trip_multi_city_one_way_fixed_route(
+                fixed_route, departure_date)
+            price = 0
+            for trip in fixed_route_trips:
+                price += trip.price
+
+            if price < best_price:
+                best_price = price
+                selected_trips = fixed_route_trips
+        return selected_trips, best_price
 
     def __repr__(self) -> str:
         return f'TravelAgent: {self.name}'

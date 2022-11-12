@@ -42,7 +42,14 @@ class Airports:
                     airport_lat = line[6]
                     airport_long = line[7]
 
+                    if airport_country not in country_currency:
+                        continue
+
                     currency = country_currency[airport_country]
+
+                    if currency not in currency_rates:
+                        continue
+
                     airport_rate = currency_rates[currency]
 
                     # Using airport_code as dictionary key for each airport as the it is unique
