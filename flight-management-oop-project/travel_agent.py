@@ -1,6 +1,7 @@
 from airports import Airports
 from airlines import Airlines
 from trip import Trip
+from itertools import permutations
 
 
 class TravelAgent:
@@ -29,6 +30,15 @@ class TravelAgent:
                     departure_date, [start, end])
         return trip
 
+    def set_trip_one_city_round_way(self, start, end, departure_date):
+        trip1 = self.set_trip_one_city_one_way(
+            start, end, departure_date)
+
+        trip2 = self.set_trip_one_city_one_way(
+            end, start, departure_date)
+
+        return [trip1, trip2]
+
     def set_trip_two_city_one_way(self, trip_info, departure_date):
         trip1 = self.set_trip_one_city_one_way(
             trip_info[0], trip_info[1], departure_date)
@@ -46,8 +56,12 @@ class TravelAgent:
             trips.append(trip)
         return trips
 
-    def set_trip_multi_city_round(self):
-        pass
+    def set_trip_multi_city_flexible_route(self, trip_cities, departure_date):
+        start_city = trip_cities[0]
+        flexible_cities = trip_cities[1:]
+        for sequence in permutations(flexible_cities):
+            for i in range(0, len(flexible_cities)):
+                print(sequence[i])
 
     def __repr__(self) -> str:
         return f'TravelAgent: {self.name}'
