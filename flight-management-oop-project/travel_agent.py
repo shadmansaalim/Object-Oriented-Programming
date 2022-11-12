@@ -1,5 +1,6 @@
 from airports import Airports
 from airlines import Airlines
+from trip import Trip
 
 
 class TravelAgent:
@@ -24,13 +25,26 @@ class TravelAgent:
         price = self.airports.get_ticket_price(start, end)
         distance = self.airports.get_distance_between_airports(start, end)
         aircraft = self.airlines.get_aircraft_by_distance(distance)
-        return [aircraft, price]
+        trip = Trip([start, end], aircraft, price,
+                    departure_date, [start, end])
+        return trip
 
-    def set_trip_one_city_two_way(self):
-        pass
+    def set_trip_two_city_one_way(self, trip_info, departure_date):
+        trip1 = self.set_trip_one_city_one_way(
+            trip_info[0], trip_info[1], departure_date)
 
-    def set_trip_multi_city_one_way(self):
-        pass
+        trip2 = self.set_trip_one_city_one_way(
+            trip_info[1], trip_info[2], departure_date)
+
+        return [trip1, trip2]
+
+    def set_trip_multi_city_one_way_fixed_route(self, trip_info, departure_date):
+        trips = []
+        for i in range(0, len(trip_info)-1):
+            trip = self.set_trip_one_city_one_way(
+                trip_info[i], trip_info[i+1], departure_date)
+            trips.append(trip)
+        return trips
 
     def set_trip_multi_city_round(self):
         pass
